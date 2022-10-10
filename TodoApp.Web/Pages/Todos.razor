@@ -15,7 +15,11 @@
             <div>
                 @foreach (var task in Todos)
                 {
-                    <div> <input type="checkbox" checked="@task.IsCompleted"/> @task.Task</div>
+                    <div> 
+                        <input type="checkbox" checked="@task.IsCompleted"/> 
+                        <span>@task.Task </span> 
+                        <span class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
+                    </div>
                 }
             </div>
         }
