@@ -14,7 +14,7 @@
         {
             <div>
                 <div>
-                    <span>@Todos.Count Item(s)</span>
+                    <span>All: @Todos.Count</span>
                     <span>Completed: @Todos.Where(item=>item.IsCompleted==true).Count()</span>
                     <span>Pending: @Todos.Where(item=>item.IsCompleted==false).Count()</span>
                 </div>
