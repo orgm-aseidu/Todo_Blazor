@@ -13,10 +13,17 @@
         @if (Todos.Count > 0)
         {
             <div>
+                <div>
+                    <span>@Todos.Count Item(s)</span>
+                    <span>Completed: @Todos.Where(item=>item.IsCompleted==true).Count()</span>
+                    <span>Pending: @Todos.Where(item=>item.IsCompleted==false).Count()</span>
+                </div>
                 @foreach (var task in Todos)
                 {
                     <div> 
-                        <input type="checkbox" checked="@task.IsCompleted"/> 
+                        <input type="checkbox" @bind="@task.IsCompleted" 
+                                 
+                                 /> 
                         <span>@task.Task </span> 
                         <span class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
                     </div>

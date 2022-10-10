@@ -20,5 +20,12 @@ namespace TodoApp.Web.Pages.Bases
         {
             Todos.Remove(item);
         }
+
+        public void ChangeCompletionStatus(int itemId)
+        {
+            var item = Todos.FirstOrDefault(i => i.Id == itemId);
+            item.IsCompleted=!item.IsCompleted;
+
+        }
     }
 }
