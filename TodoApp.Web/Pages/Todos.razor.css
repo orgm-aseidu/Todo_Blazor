@@ -1,0 +1,28 @@
+﻿body {
+
+    font-family: 'Global Sans Serif';
+    background-color: lavender
+}
+h1 {
+    color: lightcoral; 
+    font-weight: bolder;
+    font-size: 7rem;
+    text-shadow: 2px 2px lightgrey;
+    margin: auto;
+    text-align: center;
+}
+
+.body-container{
+    margin: 1rem auto;
+    background-color: white;
+    width: 10rem;
+    /*padding: 1rem;*/
+
+
+    
+}
+.task-input{
+    border: none;
+    outline: none;
+    x
+}

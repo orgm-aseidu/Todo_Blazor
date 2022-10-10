@@ -1,12 +1,11 @@
 ﻿@inherits TodosBase
 
 <h1>Todos</h1>
-<div>
+<div class="card">
     <EditForm Model="@CreateDto" OnValidSubmit="()=>AddItem(CreateDto)">
         <div>
-        <input type="text" placeholder="Please enter a task" 
-            @bind-value="CreateDto.Task"/>
-            <button type="submit">Add task</button>
+        <input class="task-input" type="text" placeholder="Please enter a task" 
+            @bind-value="@CreateDto.Task"/>
             </div>
     </EditForm>
     
@@ -16,7 +15,7 @@
             <div>
                 @foreach (var task in Todos)
                 {
-                    <div> <span class="btn-check"/> @task.Task</div>
+                    <div> <input type="checkbox" checked="@task.IsCompleted"/> @task.Task</div>
                 }
             </div>
         }
