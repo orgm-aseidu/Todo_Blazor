@@ -6,11 +6,14 @@ namespace TodoApp.Web.Pages.Bases
 {
     public class TodosBase : ComponentBase
     {
-        public List<TodoItem> Todos { get; set; }
+        public List<TodoItem> Todos { get; set; } = new List<TodoItem>();
 
+        public TodoItemCreateDto CreateDto { get; set; } = new TodoItemCreateDto();
         public void AddItem (TodoItemCreateDto item)
         {
-             Todos.Add(new TodoItem() { Task=item.Task});
+            Todos.Add(new TodoItem() { Task=item.Task});
+            CreateDto.Task = "";
+
         }
 
         public void RemoveItem(TodoItem item)

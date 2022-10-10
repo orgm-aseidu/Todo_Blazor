@@ -1,0 +1,24 @@
+﻿@inherits TodosBase
+
+<h1>Todos</h1>
+<div>
+    <EditForm Model="@CreateDto" OnValidSubmit="()=>AddItem(CreateDto)">
+        <div>
+        <input type="text" placeholder="Please enter a task" 
+            @bind-value="CreateDto.Task"/>
+            <button type="submit">Add task</button>
+            </div>
+    </EditForm>
+    
+    <div>
+        @if (Todos.Count > 0)
+        {
+            <div>
+                @foreach (var task in Todos)
+                {
+                    <div> <span class="btn-check"/> @task.Task</div>
+                }
+            </div>
+        }
+    </div>
+</div>
