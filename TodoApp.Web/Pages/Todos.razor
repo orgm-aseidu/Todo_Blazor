@@ -23,12 +23,12 @@
                     <table class="table"> 
                         <tbody>
                             <tr>
-                                <td style="display: flex; justify-content: space-between">
+                                <td id="task" style="display: flex; justify-content: space-between; align-items: flex-end">
                                    <div>
-                                  <input type="checkbox" @bind="@task.IsCompleted"/> 
-                                   <span>@task.Task </span> 
+                                  <input id="checkbox" type="checkbox" @bind="@task.IsCompleted"/>
+                                   <span for="item" done=@task.IsCompleted class="task-text" >@task.Task </span> 
                                    </div>
-                                    <span class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
+                                    <span id="trashIcon" class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
                                 </td>
                             </tr>
                         </tbody>

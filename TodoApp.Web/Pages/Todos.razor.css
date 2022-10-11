@@ -1,8 +1,6 @@
 ﻿h1 {
     color: rgba(175,47,47,0.4); 
     font-weight: bolder;
-    /*font-size: 7rem;*/
-
     margin: auto;
     text-align: left;
 }
@@ -14,7 +12,7 @@
     border: none;
     outline: none;
     width: 100%; 
-    font-size: 30px;
+    font-size: 20px;
     padding: 0.5rem;
 }
 .task-container {
@@ -22,4 +20,23 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 100%;
     padding: 0.5rem;
+    border-radius: 0.3rem;
+    
+}
+#checkbox{
+    cursor: pointer;
+}
+#task:hover{
+    background-color: rgba(30,30,30,0.05);
+}
+input:checked + .task-text {
+    text-decoration: line-through;
+    color: lightgray;
+}
+
+#trashIcon{
+    cursor: pointer;
+}
+#trashIcon:hover{
+    color: red;
 }
