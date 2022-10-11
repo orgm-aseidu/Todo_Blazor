@@ -1,15 +1,15 @@
 ﻿@inherits TodosBase
 
-<h1>Todos</h1>
-<div class="card">
-    <EditForm Model="@CreateDto" OnValidSubmit="()=>AddItem(CreateDto)">
+
+<div class="body-container" >
+   <h1><span class="oi oi-task"/> Todos</h1>
         <div>
-        <input class="task-input" type="text" placeholder="Please enter a task" 
+             <EditForm Model="@CreateDto" OnValidSubmit="()=>AddItem(CreateDto)">
+        <input class="task-input" type="text" placeholder="What needs to be done?" 
             @bind-value="@CreateDto.Task"/>
-            </div>
-    </EditForm>
-    
-    <div>
+            </EditForm>
+            </div> 
+    <div class="task-container">
         @if (Todos.Count > 0)
         {
             <div>
@@ -20,13 +20,20 @@
                 </div>
                 @foreach (var task in Todos)
                 {
-                    <div> 
-                        <input type="checkbox" @bind="@task.IsCompleted" 
-                                 
-                                 /> 
-                        <span>@task.Task </span> 
-                        <span class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
-                    </div>
+                    <table class="table"> 
+                        <tbody>
+                            <tr>
+                                <td style="display: flex; justify-content: space-between">
+                                   <div>
+                                  <input type="checkbox" @bind="@task.IsCompleted"/> 
+                                   <span>@task.Task </span> 
+                                   </div>
+                                    <span class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
                 }
             </div>
         }

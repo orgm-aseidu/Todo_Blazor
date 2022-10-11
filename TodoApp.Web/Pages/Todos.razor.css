@@ -1,28 +1,25 @@
-﻿body {
-
-    font-family: 'Global Sans Serif';
-    background-color: #f5f5f5;
-}
-h1 {
-    color: rgba(175,47,47,0.2); 
+﻿h1 {
+    color: rgba(175,47,47,0.4); 
     font-weight: bolder;
-    font-size: 7rem;
+    /*font-size: 7rem;*/
 
     margin: auto;
-    text-align: center;
+    text-align: left;
 }
 
-.body-container{
-    margin: 1rem auto;
-    background-color: white;
-    width: 10rem;
-    /*padding: 1rem;*/
-
-
-    
+.body-container {
+    font-family: sans-serif;
 }
 .task-input{
     border: none;
     outline: none;
-    x
+    width: 100%; 
+    font-size: 30px;
+    padding: 0.5rem;
+}
+.task-container {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    padding: 0.5rem;
 }

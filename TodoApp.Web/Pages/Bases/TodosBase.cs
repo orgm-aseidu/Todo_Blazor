@@ -27,5 +27,10 @@ namespace TodoApp.Web.Pages.Bases
             item.IsCompleted=!item.IsCompleted;
 
         }
+
+        //public void FilterByCompletionStatus(bool status)
+        //{
+        //    Tod
+        //}
     }
 }
