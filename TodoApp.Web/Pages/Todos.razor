@@ -16,13 +16,19 @@
                 @foreach (var task in Todos)
                 {
                     var taskElementId = $"task_{task.Id}";
+                    var checkboxId = $"checkbox>{task.Id}";
                     
                     <table class="table"> 
                         <tbody>
                             <tr>
                                 <td id="task" style="display: flex; justify-content: space-between; align-items: flex-end">
                                    <div>
-                                  <input id="checkbox" type="checkbox" @bind="@task.IsCompleted"/>
+                                  <input 
+                                      id="@checkboxId" 
+                                      type="checkbox" 
+                                      @bind="@task.IsCompleted"
+                                      @onclick="()=>UpdateCompletionStatus(task)"
+                                      />
                                    <input 
                                        id="@taskElementId" 
                                        class="task-text" 

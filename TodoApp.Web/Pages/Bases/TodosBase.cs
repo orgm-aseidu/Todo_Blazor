@@ -31,8 +31,30 @@ namespace TodoApp.Web.Pages.Bases
 
         }
 
-        public void UpdateItem(TodoItem item)
+        public async void UpdateCompletionStatus(TodoItem item)
         {
+            try
+            {
+                var index = Todos.IndexOf(item);
+                if(index == -1)
+                {
+                    throw new Exception("item does not exixt in database");
+                }
+                else
+                {
+                    Todos[index].IsCompleted = !item.IsCompleted;
+                    //Todos[index]=item;
+                    await TodoItemsLocalStorageRepo.SaveTodoItemsCollection(Todos);
+                    StateHasChanged();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
             
         }
 
@@ -40,9 +62,10 @@ namespace TodoApp.Web.Pages.Bases
         {
             await JSRuntime.InvokeVoidAsync("makeFieldReadOnly", elementId);
         }
-        public void RemoveItem(TodoItem item)
+        public async void RemoveItem(TodoItem item)
         {
             Todos.Remove(item);
+            await TodoItemsLocalStorageRepo.SaveTodoItemsCollection(Todos);
         }
 
         public void ChangeCompletionStatus(int itemId)
