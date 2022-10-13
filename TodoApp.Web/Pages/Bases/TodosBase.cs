@@ -19,13 +19,15 @@ namespace TodoApp.Web.Pages.Bases
 
         protected override async Task OnInitializedAsync()
         {
-           
+            Todos = await TodoItemsLocalStorageRepo.GetTodoItemsCollection();
         }
-        public void AddItem (TodoItemCreateDto item)
+        public async void AddItem (TodoItemCreateDto item)
         {
             int id = Todos.Count > 0 ? Todos.Max(t => t.Id) + 1 : 1;
             Todos.Add(new TodoItem() {Id=id, Task=item.Task});
             CreateDto.Task = "";
+            await TodoItemsLocalStorageRepo.SaveTodoItemsCollection(Todos);
+            
 
         }
 

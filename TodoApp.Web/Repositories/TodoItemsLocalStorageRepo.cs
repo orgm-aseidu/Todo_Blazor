@@ -15,7 +15,7 @@ namespace TodoApp.Web.Repositories
         }
         public async Task<List<TodoItem>> GetTodoItemsCollection()
         {
-            return await _localStorageService.GetItemAsync<List<TodoItem>>(StorageKey);
+            return await _localStorageService.GetItemAsync<List<TodoItem>>(StorageKey) ?? new List<TodoItem>();
         }
 
         public Task RemoveTodoItemsCollection()
