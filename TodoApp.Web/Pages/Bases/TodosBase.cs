@@ -12,6 +12,11 @@ namespace TodoApp.Web.Pages.Bases
         public List<TodoItem> Todos { get; set; } = new List<TodoItem>();
 
         public TodoItemCreateDto CreateDto { get; set; } = new TodoItemCreateDto();
+
+        protected override async Task OnInitializedAsync()
+        {
+           
+        }
         public void AddItem (TodoItemCreateDto item)
         {
             int id = Todos.Count > 0 ? Todos.Max(t => t.Id) + 1 : 1;
