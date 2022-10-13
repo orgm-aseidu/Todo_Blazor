@@ -20,6 +20,15 @@ namespace TodoApp.Web.Pages.Bases
 
         }
 
+        public void UpdateItem(TodoItem item)
+        {
+            
+        }
+
+        public async void MakeReadOnly(string elementId)
+        {
+            await JSRuntime.InvokeVoidAsync("makeFieldReadOnly", elementId);
+        }
         public void RemoveItem(TodoItem item)
         {
             Todos.Remove(item);

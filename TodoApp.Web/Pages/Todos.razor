@@ -1,5 +1,4 @@
-﻿@using System.Text.Json
-@inherits TodosBase
+﻿@inherits TodosBase
 
 
 <div class="body-container" >
@@ -13,7 +12,6 @@
     <div class="task-container">
         @if (Todos.Count > 0)
         {
-            Console.WriteLine(JsonSerializer.Serialize(Todos));
             <div>
                 @foreach (var task in Todos)
                 {
@@ -30,10 +28,18 @@
                                        class="task-text" 
                                        @bind="@task.Task" 
                                        readonly=true
-                                       @ondblclick="()=>MakeEditable(taskElementId)"
+                                       @onblur="()=>MakeReadOnly(taskElementId)"
                                        />
+
                                    </div>
+                                   <span style="font-size: 0.7rem">
+                                   <span 
+                                       class="oi oi-pencil"
+                                       id="editIcon" 
+                                       @onclick="()=>MakeEditable(taskElementId)"
+                                       />
                                     <span id="trashIcon" class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
+                                   </span>
                                 </td>
                             </tr>
                         </tbody>

@@ -42,11 +42,18 @@ input:checked + .task-text {
     color: lightgray;
 }
 
-#trashIcon{
+#trashIcon, #editIcon{
     cursor: pointer;
 }
 #trashIcon:hover{
     color: red;
+}
+
+#editIcon{
+    margin: auto 0.5rem;
+}
+#editIcon:hover{
+    color: cornflowerblue;
 }
 
 #taskFilter{
