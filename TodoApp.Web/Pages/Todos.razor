@@ -1,4 +1,5 @@
-﻿@inherits TodosBase
+﻿@using System.Text.Json
+@inherits TodosBase
 
 
 <div class="body-container" >
@@ -12,21 +13,25 @@
     <div class="task-container">
         @if (Todos.Count > 0)
         {
+            Console.WriteLine(JsonSerializer.Serialize(Todos));
             <div>
-                <div>
-                    <span>All: @Todos.Count</span>
-                    <span>Completed: @Todos.Where(item=>item.IsCompleted==true).Count()</span>
-                    <span>Pending: @Todos.Where(item=>item.IsCompleted==false).Count()</span>
-                </div>
                 @foreach (var task in Todos)
                 {
+                    var taskElementId = $"task_{task.Id}";
+                    
                     <table class="table"> 
                         <tbody>
                             <tr>
                                 <td id="task" style="display: flex; justify-content: space-between; align-items: flex-end">
                                    <div>
                                   <input id="checkbox" type="checkbox" @bind="@task.IsCompleted"/>
-                                   <span for="item" done=@task.IsCompleted class="task-text" >@task.Task </span> 
+                                   <input 
+                                       id="@taskElementId" 
+                                       class="task-text" 
+                                       @bind="@task.Task" 
+                                       readonly=true
+                                       @ondblclick="()=>MakeEditable(taskElementId)"
+                                       />
                                    </div>
                                     <span id="trashIcon" class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
                                 </td>
@@ -35,6 +40,11 @@
 
                     </table>
                 }
+                     <div id="taskFilter">
+                    <span>All: @Todos.Count</span>
+                    <span>Completed: @Todos.Where(item=>item.IsCompleted==true).Count()</span>
+                    <span>Pending: @Todos.Where(item=>item.IsCompleted==false).Count()</span>
+                </div>
             </div>
         }
     </div>

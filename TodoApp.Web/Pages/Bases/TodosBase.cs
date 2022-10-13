@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using TodoApp.Web.Data.Dto;
 using TodoApp.Web.Models;
 
@@ -6,6 +7,8 @@ namespace TodoApp.Web.Pages.Bases
 {
     public class TodosBase : ComponentBase
     {
+        [Inject]
+        IJSRuntime JSRuntime { get; set; }  
         public List<TodoItem> Todos { get; set; } = new List<TodoItem>();
 
         public TodoItemCreateDto CreateDto { get; set; } = new TodoItemCreateDto();
@@ -26,6 +29,11 @@ namespace TodoApp.Web.Pages.Bases
             var item = Todos.FirstOrDefault(i => i.Id == itemId);
             item.IsCompleted=!item.IsCompleted;
 
+        }
+
+        public async Task MakeEditable(string elementId)
+        {
+           await JSRuntime.InvokeVoidAsync("makeFieldEditable", elementId);
         }
 
         //public void FilterByCompletionStatus(bool status)

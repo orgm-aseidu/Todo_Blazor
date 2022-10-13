@@ -7,6 +7,10 @@
 
 .body-container {
     font-family: sans-serif;
+    overflow: auto;
+    max-height: 80vh;
+    max-width: 90vw;
+    margin: auto;
 }
 .task-input{
     border: none;
@@ -20,8 +24,12 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 100%;
     padding: 0.5rem;
-    border-radius: 0.3rem;
-    
+    border-radius: 0.3rem;  
+}
+.task-text{
+    outline: none;
+    border: none;
+    background-color: inherit;
 }
 #checkbox{
     cursor: pointer;
@@ -39,4 +47,16 @@ input:checked + .task-text {
 }
 #trashIcon:hover{
     color: red;
+}
+
+#taskFilter{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: honeydew;
+}
+
+#taskFilter span{
+    cursor: pointer;
+    font-weight: bold;
 }
