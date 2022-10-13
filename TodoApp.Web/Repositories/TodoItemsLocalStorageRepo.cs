@@ -23,9 +23,9 @@ namespace TodoApp.Web.Repositories
             throw new NotImplementedException();
         }
 
-        public Task SaveTodoItemsCollection(List<TodoItem> todoItems)
+        public async Task SaveTodoItemsCollection(List<TodoItem> todoItems)
         {
-            throw new NotImplementedException();
+            await _localStorageService.SetItemAsync(StorageKey, todoItems);
         }
     }
 }

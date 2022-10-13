@@ -2,13 +2,17 @@
 using Microsoft.JSInterop;
 using TodoApp.Web.Data.Dto;
 using TodoApp.Web.Models;
+using TodoApp.Web.Repositories.Contracts;
 
 namespace TodoApp.Web.Pages.Bases
 {
     public class TodosBase : ComponentBase
     {
         [Inject]
-        IJSRuntime JSRuntime { get; set; }  
+        IJSRuntime JSRuntime { get; set; }
+
+        [Inject]
+        ITodoItemsLocalStorageRepo TodoItemsLocalStorageRepo { get; set; }
         public List<TodoItem> Todos { get; set; } = new List<TodoItem>();
 
         public TodoItemCreateDto CreateDto { get; set; } = new TodoItemCreateDto();
