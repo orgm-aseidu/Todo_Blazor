@@ -14,7 +14,8 @@ namespace TodoApp.Web.Pages.Bases
         public TodoItemCreateDto CreateDto { get; set; } = new TodoItemCreateDto();
         public void AddItem (TodoItemCreateDto item)
         {
-            Todos.Add(new TodoItem() { Task=item.Task});
+            int id = Todos.Count > 0 ? Todos.Max(t => t.Id) + 1 : 1;
+            Todos.Add(new TodoItem() {Id=id, Task=item.Task});
             CreateDto.Task = "";
 
         }
