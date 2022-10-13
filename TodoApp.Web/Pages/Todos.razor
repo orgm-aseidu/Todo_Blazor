@@ -13,7 +13,7 @@
         @if (Todos.Count > 0)
         {
             <div>
-                @foreach (var task in Todos)
+                @foreach (var task in FilteredTodos)
                 {
                     var taskElementId = $"task_{task.Id}";
                     var checkboxId = $"checkbox>{task.Id}";
@@ -34,6 +34,7 @@
                                        class="task-text" 
                                        @bind="@task.Task" 
                                        readonly=true
+                                       autocomplete="off"
                                        @onblur="()=>MakeReadOnly(taskElementId)"
                                        />
 
@@ -52,10 +53,16 @@
 
                     </table>
                 }
-                     <div id="taskFilter">
-                    <span>All: @Todos.Count</span>
-                    <span>Completed: @Todos.Where(item=>item.IsCompleted==true).Count()</span>
-                    <span>Pending: @Todos.Where(item=>item.IsCompleted==false).Count()</span>
+                    <div id="taskFilter">
+                    <span @onclick="GetAllItemsAsync">All</span>
+                    <span 
+                        @onclick="()=>FilterByCompletionStatusAsync(true)" >
+                        Completed
+                    </span>
+                    <span  
+                        @onclick="()=>FilterByCompletionStatusAsync(false)">
+                        Pending
+                    </span>
                 </div>
             </div>
         }
