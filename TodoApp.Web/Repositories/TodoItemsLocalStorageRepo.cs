@@ -7,7 +7,7 @@ namespace TodoApp.Web.Repositories
     public class TodoItemsLocalStorageRepo : ITodoItemsLocalStorageRepo
     {
         const string StorageKey = "TodoList";
-        private ILocalStorageService _localStorageService;
+        private readonly ILocalStorageService _localStorageService;
 
         public TodoItemsLocalStorageRepo(ILocalStorageService localStorageService)
         {

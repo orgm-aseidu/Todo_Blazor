@@ -75,7 +75,7 @@ namespace TodoApp.Web.Pages.Bases
         {
             await JSRuntime.InvokeVoidAsync("makeFieldReadOnly", elementId);
         }
-        public async void RemoveItem(TodoItem item)
+        public async Task RemoveItem(TodoItem item)
         {
             Todos.Remove(item);
             Console.WriteLine(JsonSerializer.Serialize(Todos));
