@@ -1,0 +1,70 @@
+﻿@inherits TodosBase
+
+
+<div class="body-container" >
+   <h1><span class="oi oi-task"/> Todos</h1>
+        <div>
+             <EditForm Model="@CreateDto" OnValidSubmit="()=>AddItem(CreateDto)">
+        <input class="task-input" type="text" placeholder="What needs to be done?" 
+            @bind-value="@CreateDto.Task"/>
+            </EditForm>
+            </div> 
+    <div class="task-container">
+        @if (Todos.Count > 0)
+        {
+            <div>
+                @foreach (var task in FilteredTodos)
+                {
+                    var taskElementId = $"task_{task.Id}";
+                    var checkboxId = $"checkbox>{task.Id}";
+                    
+                    <table class="table"> 
+                        <tbody>
+                            <tr>
+                                <td id="task" style="display: flex; justify-content: space-between; align-items: flex-end">
+                                   <div>
+                                  <input 
+                                      id="@checkboxId" 
+                                      type="checkbox" 
+                                      @bind="@task.IsCompleted"
+                                      @onclick="()=>UpdateCompletionStatus(task)"
+                                      />
+                                   <input 
+                                       id="@taskElementId" 
+                                       class="task-text" 
+                                       @bind="@task.Task" 
+                                       readonly=true
+                                       autocomplete="off"
+                                       @onblur="()=>MakeReadOnly(taskElementId)"
+                                       />
+
+                                   </div>
+                                   <span style="font-size: 0.7rem">
+                                   <span 
+                                       class="oi oi-pencil"
+                                       id="editIcon" 
+                                       @onclick="()=>MakeEditable(taskElementId)"
+                                       />
+                                    <span id="trashIcon" class="oi oi-trash" @onclick="()=>RemoveItem(task)" /> 
+                                   </span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                }
+                    <div id="taskFilter">
+                    <span @onclick="GetAllItemsAsync">All</span>
+                    <span 
+                        @onclick="()=>FilterByCompletionStatusAsync(true)" >
+                        Completed
+                    </span>
+                    <span  
+                        @onclick="()=>FilterByCompletionStatusAsync(false)">
+                        Pending
+                    </span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
