@@ -31,7 +31,7 @@ namespace TodoApp.Web.Pages.Bases
             Todos.Add(new TodoItem() {Id=id, Task=item.Task});
             CreateDto.Task = "";
             await TodoItemsLocalStorageRepo.SaveTodoItemsCollection(Todos);
-            
+            StateHasChanged();
 
         }
 
@@ -61,7 +61,7 @@ namespace TodoApp.Web.Pages.Bases
             var index = Todos.IndexOf(item);
             if (index == -1)
             {
-                throw new Exception("item does not exixt in database");
+                throw new Exception("item does not exist in database");
             }
             else
             {
@@ -77,11 +77,19 @@ namespace TodoApp.Web.Pages.Bases
         }
         public async Task RemoveItem(TodoItem item)
         {
-            Todos.Remove(item);
-            Console.WriteLine(JsonSerializer.Serialize(Todos));
-            //FilteredTodos.Remove(item);
-            await TodoItemsLocalStorageRepo.SaveTodoItemsCollection(Todos);
-            StateHasChanged();
+            var itemremoved = Todos.Remove(Todos.SingleOrDefault(i=>i.Id==item.Id));
+            Console.WriteLine(JsonSerializer.Serialize(item));
+            if (itemremoved)
+            { 
+                //FilteredTodos.Remove(item);
+                await TodoItemsLocalStorageRepo.SaveTodoItemsCollection(Todos);
+                StateHasChanged();
+            }
+            else
+            {
+                Console.WriteLine("could not find item to be removed");
+            }
+
         }
 
         public void ChangeCompletionStatus(int itemId)
